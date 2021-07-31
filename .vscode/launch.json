@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Current TS File",
+            "type": "pwa-node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
+            "args": ["${relativeFile}"],
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "/Users/chenyang/.nvm/versions/node/v14.15.0/bin/node",
+            "protocol": "inspector"
+        }
+    ]
+}
