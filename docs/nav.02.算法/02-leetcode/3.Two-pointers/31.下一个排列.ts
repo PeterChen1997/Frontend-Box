@@ -32,4 +32,73 @@
 /**
  Do not return anything, modify nums in-place instead.
  */
-function nextPermutation(nums: number[]): void {}
+
+/**
+ * 一开始的想法是从后往前找到两个可交换的值，让结果比现在大，找不到就排序
+ *
+ * 这个没法找到最优解，并且交换的时间复杂度过高
+ *
+ * 最优解：找到较大值和较小值互换后，重新排序较小值的右半段；找不到的话直接重排序右半段
+ * 窍门：重排序的时候直接反转即可
+ *
+ * @param nums
+ * @returns
+ */
+
+function reverseArr(startIndex: number, endIndex: number, arr: any[]) {
+    let pointerOne = startIndex;
+    let pointerTwo = endIndex;
+    while (pointerOne < pointerTwo) {
+        [arr[pointerOne], arr[pointerTwo]] = [arr[pointerTwo], arr[pointerOne]];
+        pointerTwo--;
+        pointerOne++;
+    }
+}
+
+function nextPermutation(nums: number[]): void {
+    if (!nums?.length) {
+        return;
+    }
+
+    let len = nums.length;
+
+    // find smaller val
+    let temp = len - 1;
+    while (temp > 0) {
+        if (nums[temp - 1] < nums[temp]) {
+            break;
+        }
+        temp--;
+    }
+
+    let smallerValIndex = temp === 0 ? -1 : temp - 1;
+
+    // 如果找不到，则说明数组已经最大了，反转即可
+    if (smallerValIndex === -1) {
+        reverseArr(0, len - 1, nums);
+        return;
+    }
+
+    // find bigger val
+    let temp2 = len - 1;
+    while (temp2 > smallerValIndex) {
+        if (nums[temp2] > nums[smallerValIndex]) {
+            break;
+        }
+        temp2--;
+    }
+    let biggerValIndex = temp2;
+
+    // swap
+    [nums[smallerValIndex], nums[biggerValIndex]] = [
+        nums[biggerValIndex],
+        nums[smallerValIndex],
+    ];
+
+    // reverse the right part
+    reverseArr(smallerValIndex + 1, len - 1, nums);
+}
+
+let a = [1, 2, 3];
+nextPermutation(a);
+console.log(a);
