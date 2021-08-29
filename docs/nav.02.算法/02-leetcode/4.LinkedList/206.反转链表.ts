@@ -65,5 +65,5 @@ function reverseList(head: ListNode | null): ListNode | null {
         temp = next;
     }
 
-    return head;
+    return prev;
 }
