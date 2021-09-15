@@ -67,19 +67,25 @@ function lowestCommonAncestor(
     p: TreeNode | null,
     q: TreeNode | null
 ): TreeNode | null {
+    // 递归退出条件，找到一个符合要求的节点
     if (!root || root === p || root === q) {
         return root;
     }
 
+    // 递归找左子树
     let leftRes = lowestCommonAncestor(root.left, p, q);
+    // 递归找右子树
     let rightRes = lowestCommonAncestor(root.right, p, q);
 
+    // 左子树一个没找到，则肯定在右子树内
     if (!leftRes) {
         return rightRes;
     }
+    // 同理
     if (!rightRes) {
         return leftRes;
     }
 
+    // 如果两个子树一边一个，则此节点就是最近祖先借点
     return root;
 }
