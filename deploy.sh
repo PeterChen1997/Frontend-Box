@@ -18,6 +18,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:PeterChen1997/PeterChen1997.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:PeterChen1997/Frontend-Repo.git master:gh-pages
+git push -f git@github.com:PeterChen1997/Frontend-Box.git master:gh-pages
 
 cd -

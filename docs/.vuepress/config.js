@@ -7,7 +7,7 @@ const { nav, sidebar } = require("vuepress-bar")(
 );
 
 module.exports = {
-    base: "/Frontend-Repo/",
+    base: "/Frontend-Box/",
     title: "前端小记",
     description: "Stay hungry, stay foolish",
     plugins: [
