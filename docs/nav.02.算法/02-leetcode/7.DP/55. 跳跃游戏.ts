@@ -30,4 +30,20 @@
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
-function canJump(nums: number[]): boolean {}
+// 这题边界条件很多，之前已开始考虑的是选跳最远的，实际上是需要能跳目标最远的值
+function canJump(nums: number[]): boolean {
+    let maxDistance = 0;
+
+    for (let i = 0; i < nums.length && i <= maxDistance; i++) {
+        if (nums[i] + i > maxDistance) {
+            maxDistance = nums[i] + i;
+        }
+        if (maxDistance >= nums.length - 1) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+console.log(canJump([5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0]));
