@@ -1,3 +1,3 @@
 push:
-    bash deploy.sh
+	bash deploy.sh
 	git push
