@@ -38,7 +38,7 @@ function merge(intervals: number[][]): number[][] {
     for (let i = 1; i < intervals.length; i++) {
         let cur = intervals[i];
 
-        if (cur[0] < prev[1]) {
+        if (cur[0] <= prev[1]) {
             prev[1] = Math.max(prev[1], cur[1]);
         } else {
             res.push(prev);

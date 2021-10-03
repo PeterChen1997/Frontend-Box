@@ -45,13 +45,9 @@ call()方法调用函数，其具有指定的this和 **分别提供的** 参数
 实现方法
 
 ```js
-Function.prototype.call2 = function(context, ...args) {
-    context = context || window;
-    let fn = Symbol()
-    context[fn] = this;
-    var result =  context[fn](...args)
-    Reflect.deleteProperty(context, fn)
-    return result;
+function call() {
+  arguments[0].fn = this
+  arguments[0].fn(...Array.from(arguments).slice(1))
 }
 ```
 
@@ -60,6 +56,17 @@ Function.prototype.call2 = function(context, ...args) {
 apply()方法接收的是 **一个包含多个参数的** 数组
 
 > fun.apply(thisArg[, argsArray])
+
+polyfill
+
+```js
+function apply() {
+  arguments[0].fn = this
+  arguments[0].fn(...arguments[1])
+}
+```
+
+demo
 
 ```js
 /* min/max number in an array */
