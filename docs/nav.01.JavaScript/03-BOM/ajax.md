@@ -9,27 +9,22 @@
 5. 最后，使用 JavaScript 实现 DOM 局部刷新
 
 ```js
+const xmlHTTP = new XMLHttpRequest()
 
-var xmlhttp = new XMLHttpRequest();
-
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4) {
-        if(xmlhttp.status == 200){
-            // do something
-            console.log(xmlhttp.responseText);
-        }
-        else if(xmlhttp.status == 400) {
-            alert('There was an error 400')
-        }
-        else {
-            alert('something else other than 200 was returned')
+xmlHTTP.onreadystatechange = function() {
+    if (xmlHTTP.readyState === 4) {
+        if (xmlHTTP.status === 200) {
+            console.log(xmlHTTP.responseText)
+        } else if (xmlHTTP.status === 400) {
+            alert('error')
+        } else {
+            alert('else')
         }
     }
 }
 
-xmlhttp.open("GET", "ajax_info.txt", true);
-xmlhttp.send();
-
+xmlHTTP.open('GET', '/', true)
+xmlHTTP.send()
 ```
 
 ## readyState

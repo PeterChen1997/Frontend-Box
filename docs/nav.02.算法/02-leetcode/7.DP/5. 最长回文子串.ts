@@ -44,7 +44,7 @@ function longestPalindrome(s: string): string {
     // init dp arr
     const dpArr = new Array(len)
         .fill(null)
-        .map((item) => new Array(len).fill(false));
+        .map(() => new Array(len).fill(false));
 
     // init val
     for (let i = 0; i < len; i++) {
