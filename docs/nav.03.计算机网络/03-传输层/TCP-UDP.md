@@ -15,6 +15,8 @@ TCP（Transmission Control Protocol，传输控制协议）是基于连接的协
 
 ### 特性
 
+![图 1](https://peterchen97.coding.net/p/img2/d/test/git/raw/master/fb979beb2dc01e74e0319a5e8a27b182d0d2166cfb3c57cc234f4ac1b16b340c.png)  
+
 #### 三次握手
 
 需要进行三次握手：
