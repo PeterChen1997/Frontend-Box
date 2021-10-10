@@ -57,3 +57,28 @@ Angular 采用“脏值检测”的方式
 ## 常见问题
 
 ### key 在 ng 中较 trackBy
+
+## 优缺点
+
+### 优点
+
+- 代码一致性较高
+- 依赖注入很方便
+- async pipe 很方便
+
+### 缺点
+
+- 版本迭代问题
+- 上手成本问题
+  - rxjs
+    - subject
+    - observable
+    - subscribe
+    - ...
+  - typescript
+  - 内部概念
+    - module
+    - DI
+    - ...
+- debug 成本高
+- vscode ide 支持较差
