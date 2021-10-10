@@ -1,5 +1,11 @@
 # bind-call-apply的区别
 
+## this
+
+- this 永远指向的是最后调用它的对象
+- new 过程遇到 return 一个对象，此时 this 指向为返回的对象
+- 如果返回一个简单类型的时候，则this指向实例对象
+
 ## bind
 
 bind()最常用的方法是创建一个函数，使函数调用时拥有相同的this值
