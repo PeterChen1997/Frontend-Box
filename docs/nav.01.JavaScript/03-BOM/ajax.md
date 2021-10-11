@@ -1,5 +1,7 @@
 # Ajax
 
+async javascript and xml
+
 ## 原生实现
 
 1. 创建 XMLHttpRequest 对象
@@ -37,16 +39,27 @@ xmlHTTP.send()
 
 ## open
 
-open()的第一个参数是HTTP请求方法
+```js
+xhr.open(method, url, [async][, user][, password])
+```
 
-- 有GET，POST，HEAD以及服务器支持的其他方法。 保证这些方法一定要是大写字母，否则其他一些浏览器（比如FireFox）可能无法处理这个请求。
-- 第二个参数是你要发送的URL。由于安全原因，默认不能调用第三方URL域名。 确保你在页面中使用的是正确的域名，否则在调用 open() 方法是会有 “权限被拒绝” 错误提示。一个容易犯的错误是你企图通过 domain.tld 访问网站， 而不是使用 www.domain.tld
-- 第三个参数是可选的，用于设置请求是否是异步的。如果设为 true (默认设置)，JavaScript执行会持续，并且在服务器还没有响应的情况下与页面进行交互
+参数说明：
+
+- method：表示当前的请求方式，常见的有GET、POST
+- url：服务端地址
+- async：布尔值，表示是否异步执行操作，默认为true
+- user: 可选的用户名用于认证用途；默认为`null
+- password: 可选的密码用于认证用途，默认为`null
 
 ## send
 
-send() 方法的参数可以是任何你想发送给服务器的内容，如果是 POST 请求的话。发送表单数据时应该用服务器可以解析的格式，像查询语句：
-
-```html
-"name=value&anothername="+encodeURIComponent(myVar)+"&so=on"
+```js
+xhr.send([body])
 ```
+
+body: 在 XHR 请求中要发送的数据体，如果不传递数据则为 null
+
+如果使用GET请求发送数据的时候，需要注意如下：
+
+- 将请求数据添加到open()方法中的url地址中
+- 发送请求数据中的send()方法中参数设置为null

@@ -55,6 +55,21 @@ const compose = (...args) =>
         args.reverse().reduce((pre, next) => next(pre), params)
 ```
 
+### memorize
+
+```js
+const memoize = function (func, content) {
+  let cache = Object.create(null)
+  content = content || this
+  return (...key) => {
+    if (!cache[key]) {
+      cache[key] = func.apply(content, key)
+    }
+    return cache[key]
+  }
+}
+```
+
 ## flatten
 
 ```js
@@ -82,7 +97,7 @@ function fakeNew() {
     // 创建空对象
     const obj = new Object()
 
-    // 改 this 指向
+    // 改 原型 指向
     const Constructor = Array.prototype.shift.call(arguments)
     obj.__proto__ = Constructor.prototype
 
