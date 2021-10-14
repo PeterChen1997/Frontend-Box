@@ -60,10 +60,10 @@ const compose = (...args) =>
 ```js
 const memoize = function (func, content) {
   let cache = Object.create(null)
-  content = content || this
+  context = context || this
   return (...key) => {
     if (!cache[key]) {
-      cache[key] = func.apply(content, key)
+      cache[key] = func.apply(context, key)
     }
     return cache[key]
   }

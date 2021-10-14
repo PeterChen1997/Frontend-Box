@@ -7,4 +7,83 @@
         <title>Document</title>
     </head>
     <body></body>
+
+    <script>
+        /*
+            export type Article = {
+            id: number;
+            title: string;
+            authorIds: number[];
+            }
+
+            export type User = {
+            id: number;
+            name: string;
+            iconURL: string;
+            }
+
+            Get Articles API:
+            app/v1/articles/:id
+
+            Get Users API:
+            app/v1/users/list/:ids[]
+        */
+
+        async function getUserInfo(authorIds) {
+            // 进行数据去重
+            const unrepeatedAuthorIds = [...new Set(authorIds)];
+
+            // 用户数据 map
+            const authorInfoMap = {};
+
+            // 为缓存的用户 ID 存储
+            const newAIds = [];
+
+            // 过滤未缓存数据
+            for (let id of unrepeatedAuthorIds) {
+                const localInfo = localStorage.getItem(id);
+                if (localInfo) {
+                    // try - catch
+                    authorInfoMap[id] = JSON.parse(localInfo);
+                } else {
+                    newAIds.push(id);
+                }
+            }
+
+            // 进行数据请求 - 格式化数组
+            const userInfoList = await fetch(
+                `app/v1/users/list/${JSON.stringify(newIds)}`
+            ).then((res) => res.json());
+
+            // 进行数据缓存
+            for (let userInfo of userInfoList) {
+                // try - catch
+                localStorage.setItem(
+                    `${userInfo.id}`,
+                    JSON.stringify(userInfo)
+                );
+
+                // 写入 userInfo map
+                authorInfoMap[aid] = userInfo;
+            }
+
+            // 返回数据
+            return authorInfoMap;
+        }
+
+        // 获取 article 单篇文章内容
+        const articleId = 123;
+        const article = await fetch(
+            `app/v1/articles/${articleId}`
+        ).then((res) => res.json());
+
+        // 串行获取用户信息
+        const userInfoMap = await getUserInfo(article.authorIds);
+
+        // 返回对应结果
+        article.authorInfoList = userInfoMap;
+
+        // 供页面渲染
+        // xxx
+    </script>
 </html>

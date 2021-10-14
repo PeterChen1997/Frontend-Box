@@ -62,9 +62,10 @@ function swap(head: ListNode, k: number, offset: number) {
     } else {
         let temp = head;
         let prev = null;
-        while (offset) {
+
+        while (offset !== 0) {
             prev = temp;
-            temp = head.next;
+            temp = temp.next;
             offset--;
         }
 
@@ -76,20 +77,19 @@ function swap(head: ListNode, k: number, offset: number) {
 }
 
 function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
-    if (!head || k <= 0) {
+    if (!head || k <= 1) {
         return head;
     }
 
     const len = getLinklistLen(head);
 
-    let newHead = null;
     let tempLen = len;
-    while (len - k >= 0) {
-        newHead = swap(head, k, len - tempLen);
+    while (tempLen - k >= 0) {
+        head = swap(head, k, len - tempLen);
         tempLen -= k;
     }
 
-    return newHead;
+    return head;
 }
 
 console.log(
