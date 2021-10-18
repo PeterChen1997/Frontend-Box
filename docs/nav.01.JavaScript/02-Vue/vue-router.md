@@ -83,3 +83,35 @@ const router = new VueRouter({
   ]
 })
 ```
+
+## 路由守卫
+
+- 全局钩子
+  - beforeEach
+    - 在路由跳转前触发，参数包括to,from,next（参数会单独介绍）三个，这个钩子作用主要是用于登录验证，也就是路由还没跳转提前告知，以免跳转了再通知就为时已晚
+  - beforeResolve
+    - 这个钩子和beforeEach类似，也是路由跳转前触发，参数也是to,from,next三个，和beforeEach区别官方解释为：区别是在导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用
+    - 即在 beforeEach 和 组件内beforeRouteEnter 之后，afterEach之前调用。
+  - afterEach
+    - 他是在路由跳转完成后触发，参数包括to,from没有了next（参数会单独介绍）
+    - 他发生在beforeEach和beforeResolve之后，beforeRouteEnter（组件内守卫，后讲）之前
+- 独享路有钩子（在配置中设置）
+  - beforeEnter
+    - 和beforeEach完全相同，如果都设置则在beforeEach之后紧随执行，参数to、from、next
+- 组件内守卫
+  - beforeRouteEnter (to, from, next)
+  - beforeRouteUpdate (to, from, next)
+  - beforeRouteLeave (to, from, next)
+
+### 初始化调用顺序
+
+当点击切换路由时：
+
+- beforeRouterLeave
+- -->beforeEach
+- -->beforeEnter
+- -->beforeRouteEnter
+- -->beforeResolve
+- -->afterEach
+- -->beforeCreate-->created-->beforeMount-->mounted
+- -->beforeRouteEnter的next的回调

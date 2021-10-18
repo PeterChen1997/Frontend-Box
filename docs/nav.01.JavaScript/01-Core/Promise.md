@@ -113,3 +113,20 @@ function fn1(){
 ### promise.all
 
 ### promise.race
+
+### promise.allSettled
+
+- Promise.allSettled()方法返回一个承诺，该承诺在所有给定的承诺已完成或被拒绝后解析，并带有一个对象数组，每个对象描述每个承诺的结果
+- Promise.all()如果任务相互依赖/如果您想在其中任何一个拒绝时立即拒绝，则返回的 Promise 可能更合适
+
+```js
+Promise.allSettled = function (promises) {
+    return Promise.all(promises.map(function (promise) {
+      return promise.then(function (value) {
+        return { state: 'fulfilled', value: value };
+      }).catch(function (reason) {
+        return { state: 'rejected', reason: reason };
+      });
+    }));
+}
+```
