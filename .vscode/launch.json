@@ -8,7 +8,8 @@
             "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
             "args": ["${relativeFile}"],
             "cwd": "${workspaceRoot}",
-            "runtimeExecutable": "/Users/chenyang/.nvm/versions/node/v14.15.0/bin/node",
+            // "runtimeExecutable": "/Users/chenyang/.nvm/versions/node/v14.15.0/bin/node",
+            "runtimeExecutable": "/Users/peterchen/.nvm/versions/node/v15.14.0/bin/node",
             "protocol": "inspector"
         }
     ]

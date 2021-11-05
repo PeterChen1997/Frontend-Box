@@ -28,6 +28,5 @@
     "hooks:init": "ln -s git-hook/* .git/hooks/",
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
-  },
-  "dependencies": {}
+  }
 }
